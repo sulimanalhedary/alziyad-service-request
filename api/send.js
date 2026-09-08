@@ -61,7 +61,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         from: 'إنشاءات الزياد <onboarding@resend.dev>',
-        to: ['S_alhedary@yahoo.com'],
+        to: ['s_alhedary@yahoo.com'],
         subject: `طلب خدمة جديد - ${name}`,
         html
       })
@@ -70,12 +70,21 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (!response.ok) {
-      return res.status(response.status).json({ ok: false, error: data });
+      return res.status(response.status).json({
+        ok: false,
+        error: data
+      });
     }
 
-    return res.status(200).json({ ok: true, id: data.id || null });
+    return res.status(200).json({
+      ok: true,
+      id: data.id || null
+    });
 
   } catch (error) {
-    return res.status(500).json({ ok: false, error: 'Server error' });
+    return res.status(500).json({
+      ok: false,
+      error: 'Server error'
+    });
   }
 }
