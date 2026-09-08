@@ -164,7 +164,7 @@ otherServiceCheck.addEventListener('change',()=>otherServiceBox.classList.toggle
 property.addEventListener('change',()=>otherPropertyBox.classList.toggle('hidden',property.value!=='أخرى'));
 district.addEventListener('change',()=>otherDistrictBox.classList.toggle('hidden',district.value!=='حي آخر'));
 
-const FORM_ENDPOINT='REPLACE_WITH_FORM_ENDPOINT';
+const FORM_ENDPOINT='/api/send';
 const WHATSAPP_NUMBER='966507522235';
 
 f.addEventListener('submit',async e=>{
@@ -218,15 +218,10 @@ f.addEventListener('submit',async e=>{
    email,
    city,
    district:districtFinal,
-   property_type:propertyFinal,
-   services:services.join('، '),
+   propertyType:propertyFinal,
+   service:services.join('، '),
    description
  };
-
- if(FORM_ENDPOINT==='REPLACE_WITH_FORM_ENDPOINT'){
-   errorBox.textContent='الواجهة جاهزة. يتبقى فقط ربط خدمة استقبال النماذج عند النشر.';
-   errorBox.classList.remove('hidden'); return;
- }
 
  try{
    const res=await fetch(FORM_ENDPOINT,{
